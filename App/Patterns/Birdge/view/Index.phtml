@@ -1,0 +1,15 @@
+<script>
+var height = $(window).height();
+var width = $(window).width();
+$(window).click(function() {
+    $.ajax({
+        type: "POST",
+        url: "https://myphp.com/App/Patterns/Birdge/Index",
+        data: {
+            'height': height,
+            'width': width
+        },
+        dataType: "JSON"
+    });
+});
+</script>
