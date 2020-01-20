@@ -1,12 +1,43 @@
 <?php
 namespace App\Patterns\Observer\Products;
 
-class BookPhp implements \SplObserver
+class BookPhp implements \SplSubject
 {
-    public $name = 'BookPhp';
+    private $observers;
 
-    public function update(\SplSubject $subject)
+    public function __construct(
+    ) {
+        $this->observers = new \SplObjectStorage;
+    }
+
+    public function attach(\SplObserver $observer)
     {
-        echo 'You changed BookPhp';
+        $name = $observer->name;
+        echo "You attached on $name";
+        $this->observers->attach($observer);
+    }
+
+    public function detach(\SplObserver $observer)
+    {
+        $this->observers->detach($observer);
+        $name = $observer->name;
+        echo "You detached on $name";
+    }
+
+    public function notify()
+    {
+        foreach ($this->observers as $observer) {
+            $observer->update($this);
+        }
+    }
+
+    public function updateProductName($currentName, $name)
+    {
+        foreach($this->observers as $product) {
+            if($product->name == $currentName) {
+                $product->name = $name;
+                $this->notify();
+            }
+        }
     }
 }
