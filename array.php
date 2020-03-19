@@ -1,6 +1,8 @@
 <?php
 require_once('html.php');
 echo '<pre>';
+echo 'array_change_key_case</br>';
+var_dump(array_change_key_case(array(24, 'z'=>'das', 'Zs'=>'dsa'), CASE_UPPER));
 echo 'array_chunk</br>';
 var_dump(array_chunk(array('a','a','a'), 2, true));
 echo 'array_column</br>';
@@ -73,4 +75,23 @@ function test1($carry, $item)
     return $carry + $item + 1;
 }
 var_dump(array_reduce($array1, 'test1'));
-
+echo 'array_reduce_recursive</br>';
+var_dump(array_replace(array('lo'=>5757, 545, 'dsa'=>'sda', 55), array(666, 'test'=>'tesss'), array('kjhdfas'=>'Jakarta')));
+echo 'array_replace_recursive</br>';
+var_dump(array_replace_recursive(array(array(11)), array(array(14745))));
+echo 'array_flip</br>';
+var_dump(array_flip(array('xa', 'jasdhgdfsajhg')));
+echo 'array_reverse</br>';
+var_dump(array_reverse(array('sda'=>356, 45, 4=>4), true));//Have a preserve key
+echo 'array_search</br>';
+var_dump(array_search(array('asd', array(14, array('das'))), array(array('asd', array(14, array('das'))))));
+echo 'array_shift</br>';
+$array1 = array(245, 545, 'sda');
+var_dump(array_shift($array1));
+var_dump($array1);
+echo 'array_slice</br>';
+var_dump(array_slice(array(1,2,4,5,5,5,5,7), -2, 3, true));//preserve keys
+echo 'array_splice</br>';
+$array1 = array(1,2,3,4,5,6,7,8,9);
+var_dump(array_splice($array1, -5, -3, 'test'));
+var_dump($array1);
