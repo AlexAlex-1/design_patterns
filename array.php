@@ -79,7 +79,7 @@ echo 'array_reduce_recursive</br>';
 var_dump(array_replace(array('lo'=>5757, 545, 'dsa'=>'sda', 55), array(666, 'test'=>'tesss'), array('kjhdfas'=>'Jakarta')));
 echo 'array_replace_recursive</br>';
 var_dump(array_replace_recursive(array(array(11)), array(array(14745))));
-echo 'array_flip</br>';
+echo 'array_Flip</br>';
 var_dump(array_flip(array('xa', 'jasdhgdfsajhg')));
 echo 'array_reverse</br>';
 var_dump(array_reverse(array('sda'=>356, 45, 4=>4), true));//Have a preserve key
@@ -94,4 +94,40 @@ var_dump(array_slice(array(1,2,4,5,5,5,5,7), -2, 3, true));//preserve keys
 echo 'array_splice</br>';
 $array1 = array(1,2,3,4,5,6,7,8,9);
 var_dump(array_splice($array1, -5, -3, 'test'));
+var_dump($array1);
+echo 'array_sum</br>';
+var_dump(array_sum(array(1,5,1.122)));
+echo 'array_values</br>';
+var_dump(array_values(array('das'=>'sdsa')));//array reindex
+echo 'array_unique</br>';
+var_dump(array_unique(array('1', 1, SORT_REGULAR)));
+echo 'array_ushift</br>';
+$array1 = [1,2,3,54];
+var_dump(array_unshift($array1, 'dsfa', 'dsadsa'));
+var_dump($array1);
+echo 'array_walk</br>';
+$array1 = [1,2,5,8,-55];
+function arraywalk(&$val, $key, $userData)
+{
+    if ($val < 0) {
+        $val = 'Moins que zero';
+    } else {
+        $val = 'Plus que zero ou zero';
+    }
+}
+var_dump(array_walk($array1, 'arraywalk', ' LOL'));
+var_dump($array1);
+echo 'array_walk_recursive</br>';
+$array1 = array(1,2,5, array(-9, -5, array(array())), array('sda','fsdf'));
+function arraywalkrec(&$val, $key)
+{
+    if(gettype($val) != 'integer') {
+        $val = 'is not number';
+    } elseif($val < 0) {
+        $val = 'Moins que zero';
+    } else {
+        $val = 'Plus que zero ou zero';
+    }
+}
+array_walk_recursive($array1, 'arraywalkrec');
 var_dump($array1);
