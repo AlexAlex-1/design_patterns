@@ -2,7 +2,7 @@
 require_once('html.php');
 echo '<pre>';
 echo 'array_change_key_case</br>';
-var_dump(array_change_key_case(array(24, 'z'=>'das', 'Zs'=>'dsa'), CASE_UPPER));
+var_dump(array_change_key_case(array(24, 'z'=>'das', array('a'=>5), 'Zs'=>'dsa'), CASE_UPPER));
 echo 'array_chunk</br>';
 var_dump(array_chunk(array('a','a','a'), 2, true));
 echo 'array_column</br>';
@@ -84,7 +84,7 @@ var_dump(array_flip(array('xa', 'jasdhgdfsajhg')));
 echo 'array_reverse</br>';
 var_dump(array_reverse(array('sda'=>356, 45, 4=>4), true));//Have a preserve key
 echo 'array_search</br>';
-var_dump(array_search(array('asd', array(14, array('das'))), array(array('asd', array(14, array('das'))))));
+var_dump(array_search(array('asd', array(14, array('das'))), array('sa' => array('asd', array(14, array('das'))))));
 echo 'array_shift</br>';
 $array1 = array(245, 545, 'sda');
 var_dump(array_shift($array1));
@@ -131,3 +131,98 @@ function arraywalkrec(&$val, $key)
 }
 array_walk_recursive($array1, 'arraywalkrec');
 var_dump($array1);
+/*  ---SORT FLAGS---*/
+/*
+ * SORT_REGULAR - compare items normally
+ * SORT_NUMERIC
+ * SORT_STRING
+ * SORT_LOCALE_STRING
+ * SORT_NATURAL
+ * SORT_FLAG_CASE
+*/
+/* SORT ORDERS
+ * SORT_ASC
+ * SORT_DESC
+*/
+/*  ---SORT---  */
+echo 'array_multisort</br>';
+$array1 = array(array(1,2,3), array('1.5', '1.4555', 1.3));
+array_multisort(
+    $array1[0], SORT_DESC, SORT_STRING,
+    $array1[1], SORT_ASC, SORT_STRING
+);
+var_dump($array1);
+echo 'sort</br>'; //low to high, doesn't save keys
+$array1 = array(32,15, array(321, array(554), array(1)), 558,'dsa',array(1));
+var_dump($array1);
+echo 'asort</br>';//low to high, saves keys
+$array1 = array('un' => 1, array('deux' => '2', 'un'=>1), array('deux' => '2', 'un'=>5), 'test' => 'dsakjh');
+asort($array1, SORT_REGULAR);
+var_dump($array1);
+echo 'arsort</br>';//high to low, saves keys
+$array1 = array('un' => '-1', array('deux' => '2', 'un'=>1), array('deux' => '2', 'un'=>5), 'test' => 'dsakj', 'deux'=>'-2');
+arsort($array1, SORT_REGULAR);
+var_dump($array1);
+echo 'ksort</br>';//sorts by key, low to high, saves keys
+$array1 = array('deux' => 2, 'un'=>1);
+ksort($array1);
+var_dump($array1);
+echo 'krsort</br>';// sorts by key, high to low, saves keys
+$array1 = array('deux' => 2, '-un'=>1, 'trois'=>3);
+krsort($array1);
+var_dump($array1);
+echo 'natcasesort</br>';//case insensitive
+$array1 = array('Index1.php', 'index.php', 'index.html');
+natcasesort($array1);
+var_dump($array1);
+echo 'natsort</br>';
+$array1 = array('Index1.php', 'index.php', 'index.html');
+natsort($array1);
+var_dump($array1);
+echo 'rsort</br>';//high to low, doesn't save keys, sort by value
+$array1 = array('un' => '-1', array('deux' => '2', 'un'=>1), array('deux' => '2', 'un'=>5), 'test' => 'dsakj', 'deux'=>'-2');
+rsort($array1);
+var_dump($array1);
+echo 'shuffle</br>';
+$array1 = range(-3, 2);
+shuffle($array1);
+var_dump($array1);
+echo 'uasort</br>';
+function uasortfc($a, $b)
+{
+    $key = rand(1, 10000);
+    echo $key, ' ', $a, ' ', $b, ' ';
+    if(is_string($a)) {
+        return -1;
+    }
+    return 1;
+}
+$array1 = array('test'=>1, 'iydsg', 'un'=>2, 'desxc'=>'fsdfdsf', 55);
+var_dump(usort($array1, 'uasortfc'));
+var_dump($array1);
+echo 'uksort</br>';
+echo 'usort</br>';
+/*  ---END SORT---  */
+echo 'compact</br>';
+$moi = 'Alex';
+$ville = 'Marseille';
+$pays = 'La France';
+$vars = array('ville', 'pays');
+$testArr = compact($vars, 'moi');
+var_dump($testArr);
+echo 'current</br>';
+var_dump(current($array1));
+echo 'extract</br>';
+extract($testArr, EXTR_PREFIX_ALL, 'extr');
+var_dump($extr_ville, $extr_pays, $extr_moi);
+echo 'in_array</br>';
+$array1 = array('12.4', array(1, array(21, 's')));
+var_dump(in_array(12.4, $array1));
+var_dump(in_array(array(1, array(21, 's')), $array1));
+var_dump(in_array(12.4, $array1, true));
+echo 'list</br>';
+$arr = array('Alex', 'AlexSkorov');
+list($name, $lastName) = $arr;
+var_dump($name, $lastName);
+echo 'pos</br>';
+echo 'reset</br>';

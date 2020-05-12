@@ -1,0 +1,85 @@
+body {
+    background-image: linear-gradient(to bottom right, #33067e, white);
+    color: white;
+}
+.search {
+    width: 40%;
+    position: fixed;
+    height: 50px;
+    border-radius: 5px;
+    z-index: 777;
+    font-size: 35px;
+    color: #33067e;
+}
+.aucun {
+    width: 50%;
+    height: 30%;
+    position: absolute;
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    top: 33%;
+    display: flex;
+    justify-content: center;
+}
+.aucun h3 {
+    position: relative;
+    top: 33%;
+}
+.play {
+    height: auto;
+    width: 64px;
+}
+.song-item {
+    height: auto;
+    width: 60%;
+}
+.pause {
+    height: auto;
+    width: 64px;
+    display: none;
+}
+.current {
+    position: fixed;
+    width: 100%;
+    background: white;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.actions {
+    cursor: pointer;
+    width: auto;
+    display: flex;
+}
+.repeat.active img, .random.active img {
+    box-shadow: 0 0 9px 2px #33067e;
+}
+.repeat img, .random img {
+    border-radius: 20px;
+}
+.button {
+    margin-left: 10px;
+}
+.vol {
+    height: 90%;
+    width: 10%;
+    position: relative;
+}
+.percent {
+    width: 50%;
+    position: absolute;
+    height: 100%;
+    background-color: #33067e;
+}
+label {
+    cursor: pointer;
+}
+label:hover {
+    text-decoration: underline;
+}
+.media-info {
+    color: black;
+}

@@ -1,6 +1,8 @@
 <?php
 require_once('html.php');
 echo '<h3><a href="/array.php">ARRAYS</a></h3>';
+echo '<h3><a href="/strings.php">STRINGS</a></h3>';
+echo '<h3><a href="/files.php">FILES</a></h3>';
 echo '<pre>';
 /*NEW IN PHP 7.4*/
 //Arrow functions:

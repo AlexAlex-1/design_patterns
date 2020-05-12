@@ -6,10 +6,10 @@ class Index
 
     public $car;
 
-    public function __construct($template)
+/*    public function __construct($template)
     {
         include $template;
-    }
+    }*/
 
     public function start()
     {
