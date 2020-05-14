@@ -132,6 +132,7 @@ var play = function (link, e) {
     $(e).css('display', 'none');
     $('.current').children('.actions').children('.play').css('display', 'none');
     $('.current').children('.actions').children('.pause').css('display', 'block');
+    $('body').animate({ scrollTop: $('div[data-status=current]').offset().top - 500 }, 1000);
 }
 
 var pause = function (link, e) {
