@@ -21,6 +21,6 @@ $arr2['lol'] ??= 'LOL';
 var_dump($arr2);
 /*END NEW*/
 //echo str_replace("\n", '', str_replace(' ', '', trim(htmlspecialchars(file_get_contents('https://www.nrj.fr/webradios?radioid=158')))));
-$result = true ?? 2;
+$result = false ?? 2;
 echo $result;
 ?>
